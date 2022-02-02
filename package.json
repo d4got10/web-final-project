@@ -1,0 +1,47 @@
+{
+  "name": "steam-investments-tracker",
+  "version": "1.0.0",
+  "description": "",
+  "main": "App.js",
+  "scripts": {
+    "start": "cross-env NODE_ENV=production node App.js",
+    "server": "nodemon App.js",
+    "client": "npm run start --prefix client",
+    "client:install": "npm install --prefix client",
+    "client:build": "npm run build --prefix client",
+    "dev": "cross-env NODE_ENV=development concurrently \"npm run server\" \"npm run client\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/d4got10/steam-investments-tracker.git"
+  },
+  "keywords": [
+    "mern",
+    "react",
+    "steam"
+  ],
+  "author": "Danil Izotov <rusbeks@outlook.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/d4got10/steam-investments-tracker/issues"
+  },
+  "homepage": "https://github.com/d4got10/steam-investments-tracker#readme",
+  "dependencies": {
+    "axios": "^0.25.0",
+    "bcryptjs": "^2.4.3",
+    "config": "^3.3.7",
+    "express": "^4.17.2",
+    "express-validator": "^6.14.0",
+    "image-to-base64": "^2.2.0",
+    "jsdom": "^19.0.0",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^6.1.8",
+    "node-fetch": "^3.2.0",
+    "node-schedule": "^2.1.0"
+  },
+  "devDependencies": {
+    "concurrently": "^7.0.0",
+    "cross-env": "^7.0.3",
+    "nodemon": "^2.0.15"
+  }
+}

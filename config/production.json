@@ -1,0 +1,6 @@
+{
+  "port": 5000,
+  "mongoUri": "mongodb+srv://d4got10:1SmLDfmpU8iSlyBf@cluster0.7xppp.mongodb.net/app?retryWrites=true&w=majority",
+  "jwtSecret": "d4got10 investment secret key",
+  "baseUrl": "http://localhost:5000"
+}
