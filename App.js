@@ -12,7 +12,7 @@ app.use('/api/auth', require('./routes/auth.routes'))
 app.use('/api/investment', require('./routes/investment.routes'))
 app.use('/api/item', require('./routes/item.routes'))
 
-if(process.evn.NODE_ENV === 'production'){
+if(process.env.NODE_ENV === 'production'){
     app.use('/', express.static(path.join(__dirname, 'client', 'build')))
 
     app.get('*', (req, res) => {
