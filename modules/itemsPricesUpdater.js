@@ -17,26 +17,32 @@ async function updateItems() {
     const { totalCount } = await getItemsData(0);
     const count = Math.ceil(totalCount / 100);
     for(let start = 0; start < count; start++) {
-        const { results } = await getItemsData(start)
+        try {
+            const {results} = await getItemsData(start)
 
-        for (let i in results) {
-            const itemData = results[i];
+            for (let i in results) {
+                const itemData = results[i];
 
-            let item = await Item.findOne({name: itemData.name});
-            if (!item) {
-                item = new Item(
-                    {
-                        name: itemData.name,
-                        currentPrice: itemData.sell_price / 100,
-                        imageUrl: `https://api.steamapis.com/image/item/730/${itemData.name}`
-                    })
-            } else {
-                item.currentPrice = itemData.sell_price / 100;
+                let item = await Item.findOne({name: itemData.name});
+                if (!item) {
+                    item = new Item(
+                        {
+                            name: itemData.name,
+                            currentPrice: itemData.sell_price / 100,
+                            imageUrl: `https://api.steamapis.com/image/item/730/${itemData.name}`
+                        })
+                } else {
+                    item.currentPrice = itemData.sell_price / 100;
+                }
+                await item.save();
             }
-            await item.save();
+            console.log(`Updated 100 items [${start}/${count}]`);
         }
-
-        console.log(`Updated 100 items [${start}/${count}]`);
+        catch (e){
+            start--;
+            console.log('Got an error from updating items. Halting for 1 minute.');
+            await PromiseTimeout(60000);
+        }
     }
     //for await (const item of Item.find()) {
     //    item.currentPrice = await getItemPrice(item.name);
